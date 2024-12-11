@@ -27,7 +27,7 @@ export default function StyledButton({ title, ...props }: StyledButtonProps) {
     <TouchableOpacity {...props} style={[styles.button, props.style, isActive && styles.active]}
     onPressIn={handlePressIn} // Detecta quando o botão é pressionado
     onPressOut={handlePressOut}>
-      <Text style={globalStyles.buttonText}>{title} →</Text>
+      <Text style={globalStyles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
 }

@@ -11,6 +11,7 @@ import globalStyles from "../../styles/globalStyles";
 import Sneaker from "../../types/Sneaker";
 import { useState } from "react";
 import ViewDetails from "@/components/ViewDetails";
+import CardSneaker from "@/components/CardSneaker";
 
 export default function Home() {
   const { data, create, update, remove, refreshData, loading } =
@@ -55,8 +56,7 @@ export default function Home() {
         <FlatList
           data={data}
           renderItem={({ item }) => (
-            <View style={{ marginBottom: 20 }}>
-              {/* ViewDetails component - Botão para ver os detalhes */}
+            <View style={{ marginBottom: 10 }}>
               <ViewDetails sneaker={item} />
             </View>
           )}

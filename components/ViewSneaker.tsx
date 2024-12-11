@@ -19,7 +19,7 @@ export default function ViewSneaker({ sneaker, onDelete, onEdit }: ViewSneakerPr
     >
       <Text>id: {sneaker.id}</Text>
       <Text>Nome: {sneaker.brand} {sneaker.name}</Text>
-      <Text>Size: {sneaker.size}</Text>
+      <Text>Tamanho: {sneaker.size}</Text>
       <Text>Cor(es): {sneaker.color}</Text>
       <Text>Preço: {sneaker.price}</Text>
       <Text>Imagem: {sneaker.image}</Text>
