@@ -4,24 +4,27 @@ import { Alert, Text } from "react-native";
 import useAuth from "../firebase/hooks/useAuth";
 import StyledLogout from "./StyledLogout";
 
-export default function HeaderRight() {
+interface HeaderRightProps {
+  showEmail?: boolean;
+}
+
+export default function HeaderRight({showEmail = true}: HeaderRightProps) {
   const router = useRouter();
   const { user, logout } = useAuth();
 
   return (
     <>
-      <Text>{user?.email}</Text>
+      {showEmail && <Text style={{fontSize: 10, fontWeight: "600", textDecorationLine: 'underline', fontStyle: 'italic'}}>{user?.email}</Text> }
       <StyledLogout
         onPress={async () => {
           try {
             await logout();
-            router.replace("/");
+            router.replace('/');
           } catch (error: any) {
-            Alert.alert("Logout error", error.toString());
+            Alert.alert("Erro de Logout", error.toString());
           }
         }}
         title={"Logout"}
-        style={{ width: "auto", marginLeft: 12 }}
       />
     </>
   );

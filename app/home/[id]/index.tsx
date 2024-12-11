@@ -1,5 +1,5 @@
 import { Stack, useGlobalSearchParams, useRouter } from "expo-router";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, View, StyleSheet } from "react-native";
 
 import HeaderRight from "../../../components/HeaderRight";
 import Loading from "../../../components/Loading";
@@ -37,12 +37,10 @@ export default function SneakerDetails() {
     <View style={globalStyles.container}>
       <Stack.Screen
         options={{
-          title: "Sneaker",
-          headerRight: () => <HeaderRight />,
+          title: "Detalhes",
+          headerRight: () => <HeaderRight showEmail={false} />,
         }}
       />
-
-      <Text style={globalStyles.title}>Sneaker Details</Text>
 
       <ViewSneaker
         sneaker={sneaker}
@@ -71,3 +69,5 @@ export default function SneakerDetails() {
     </View>
   );
 }
+
+

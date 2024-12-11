@@ -24,7 +24,7 @@ export default function _screen() {
 
   return (
     <ImageBackground 
-      source={require('@/assets/images/background-2.png')}
+      source={require('@/assets/images/a.jpg')}
       resizeMode="cover"
       style={styles.background}>
     <ScrollView style={styles.container}>
@@ -64,7 +64,7 @@ export default function _screen() {
               await login(email, password);
               router.push("/home/");
             } catch (error: any) {
-              Alert.alert("Login error", error.toString());
+              Alert.alert("Erro de Login", error.toString());
             }
           }}
         />

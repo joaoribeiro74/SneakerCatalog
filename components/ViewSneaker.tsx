@@ -1,8 +1,11 @@
 import { useRouter } from "expo-router";
-import { Alert, Text, View } from "react-native";
+import { Alert, Text, View, StyleSheet, ScrollView } from "react-native";
 
 import Sneaker from "../types/Sneaker";
 import StyledButton from "./StyledButton";
+
+import { MaskedText } from "react-native-mask-text";
+import CardSneaker from "./CardSneaker";
 
 interface ViewSneakerProps {
   sneaker: Sneaker;
@@ -14,27 +17,22 @@ export default function ViewSneaker({ sneaker, onDelete, onEdit }: ViewSneakerPr
   const router = useRouter();
 
   return (
-    <View
-      style={{ borderTopColor: "darkblue", borderTopWidth: 1, marginTop: 12 }}
+    <ScrollView
+      style={{ marginTop: 12 }}
     >
-      <Text>id: {sneaker.id}</Text>
-      <Text>Nome: {sneaker.brand} {sneaker.name}</Text>
-      <Text>Tamanho: {sneaker.size}</Text>
-      <Text>Cor(es): {sneaker.color}</Text>
-      <Text>Preço: {sneaker.price}</Text>
-      <Text>Imagem: {sneaker.image}</Text>
+      <CardSneaker sneaker={sneaker} showDetails={true} isSecondPage={true}>
+        <Text></Text>
+      </CardSneaker>
 
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
       <StyledButton
           title="Editar"
           onPress={() => {
             if (sneaker.id) {
-              // Confirmação antes de editar
               Alert.alert("Editar informações", "Você tem certeza?", [
                 {
                   text: "Sim",
                   onPress: () => {
-                    // Passando o ID do sneaker para a função onEdit
                     onEdit(sneaker.id);
                   },
                 },
@@ -50,35 +48,52 @@ export default function ViewSneaker({ sneaker, onDelete, onEdit }: ViewSneakerPr
               );
             }
           }}
-          style={{ width: "50%" }}
+          style={{ width: "48%", marginTop: 15 }}
         />
 
         <StyledButton
           title="Deletar"
           onPress={() => {
             if (sneaker.id) {
-              Alert.alert("Delete Sneaker", "Are you sure?", [
+              Alert.alert("Deletar Sneaker", "Você tem certeza?", [
                 {
-                  text: "Yes",
+                  text: "Sim",
                   onPress: async () => {
                     onDelete();
                   },
                 },
                 {
-                  text: "No",
+                  text: "Não",
                   style: "cancel",
                 },
               ]);
             } else {
               Alert.alert(
-                "delete error",
-                "cannot delete Sneaker because it does not have an id!"
+                "Erro ao Deletar",
+                "Não é possível acessar os detalhes do tênis porque ele não possui um ID!"
               );
             }
           }}
-          style={{ width: "50%", backgroundColor: "red" }}
+          style={{ width: "48%", backgroundColor: "red", marginRight: 4, marginTop: 15 }}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  card: {
+    width: '90%',
+    display: 'flex',
+    marginTop: 20,
+    padding: 30,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: "323232",
+    backgroundColor: "#f6f6f6",
+    boxShadow: "4px 4px #323232",
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

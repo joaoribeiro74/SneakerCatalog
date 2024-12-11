@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { Stack, usePathname, useRouter } from "expo-router";
-import { Alert, FlatList, Text, TextInput, View, StyleSheet, ScrollView } from "react-native";
+import { Alert, FlatList, Text, TextInput, View, StyleSheet, ScrollView, ImageBackground } from "react-native";
 
 import HeaderRight from "../../components/HeaderRight";
 import Loading from "../../components/Loading";
@@ -28,26 +28,10 @@ export default function Home() {
         }}
       />
 
-      <Text style={globalStyles.title}>Sneaker CRUD</Text>
-
       <StyledButton
-        title="Create sneaker"
-        onPress={async () => {
-          try {
-            await create({
-              brand: faker.lorem.words(1),
-              name: faker.lorem.words(4),
-              size: faker.number.int({max: 46}),
-              color: faker.lorem.words(2),
-              price: faker.number.int({min: 1000, max: 40000}),
-              image: faker.image.url(),
-            });
-
-            await refreshData();
-          } catch (error: any) {
-            Alert.alert("Create Sneaker error", error.toString());
-          }
-        }}
+        style={{ marginBottom: 20, marginTop: -10}}
+        title="Criar sneaker"
+        onPress={() => router.push("/home/create")}
       />
 
 {loading ? (
@@ -102,7 +86,4 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginTop: 3,
   },
-  titleInput: {
-
-  }
 });
