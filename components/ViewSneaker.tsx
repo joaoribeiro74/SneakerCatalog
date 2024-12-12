@@ -28,25 +28,7 @@ export default function ViewSneaker({ sneaker, onDelete, onEdit }: ViewSneakerPr
       <StyledButton
           title="Editar"
           onPress={() => {
-            if (sneaker.id) {
-              Alert.alert("Editar informações", "Você tem certeza?", [
-                {
-                  text: "Sim",
-                  onPress: () => {
-                    onEdit(sneaker.id);
-                  },
-                },
-                {
-                  text: "Não",
-                  style: "cancel",
-                },
-              ]);
-            } else {
-              Alert.alert(
-                "Erro de visualização",
-                "Não é possível acessar os detalhes do sneaker porque ele não tem um ID!"
-              );
-            }
+            onEdit(sneaker.id);
           }}
           style={{ width: "48%", marginTop: 15 }}
         />

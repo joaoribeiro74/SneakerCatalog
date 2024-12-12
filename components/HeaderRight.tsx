@@ -20,11 +20,13 @@ export default function HeaderRight({showEmail = true}: HeaderRightProps) {
           try {
             await logout();
             router.replace('/');
+            console.log("Clicado!");
           } catch (error: any) {
             Alert.alert("Erro de Logout", error.toString());
           }
         }}
         title={"Logout"}
+        style={{  }}
       />
     </>
   );

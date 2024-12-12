@@ -2,7 +2,9 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    TouchableOpacityProps
+    TouchableOpacityProps,
+    TouchableHighlight,
+    TouchableHighlightProps
   } from "react-native";
   
   import globalStyles from "../styles/globalStyles";
@@ -10,25 +12,14 @@ import {
   
   type StyledButtonProps = {
     title: string;
-  } & TouchableOpacityProps;
+  } & TouchableHighlightProps;
   
   export default function StyledButton({ title, ...props }: StyledButtonProps) {
-    const [isActive, setIsActive] = useState(false);
-
-    const handlePressIn = () => {
-      setIsActive(true); // Ativa o estilo de pressionado
-    };
-
-    const handlePressOut = () => {
-      setIsActive(false); // Desativa o estilo de pressionado
-    };
 
     return (
-      <TouchableOpacity {...props} style={[styles.button, props.style, isActive && styles.active]}
-        onPressIn={handlePressIn} // Detecta quando o botão é pressionado
-        onPressOut={handlePressOut}>
+      <TouchableHighlight {...props} style={[styles.button, props.style]}>
         <Text style={globalStyles.buttonText}>{title}</Text>
-      </TouchableOpacity>
+      </TouchableHighlight>
     );
   }
   
@@ -42,11 +33,6 @@ import {
       paddingHorizontal: 5,
       borderRadius: 2,
       borderWidth: 1,
-    },
-    active: {
-      boxShadow: "0px 0px #323232",
-      transform: [{ translateX: 2 }, { translateY: 2 }],
-      opacity: 1,
     },
   });
   
